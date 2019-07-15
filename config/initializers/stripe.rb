@@ -1,2 +1,2 @@
 require 'stripe'
-Stripe.api_key = 'sk_test_ZYfQP0HXGG6qraD5rz4Bg0mo00IEyKZPK6'
+Stripe.api_key = Rails.application.credentials.stripe[:secret_key]
