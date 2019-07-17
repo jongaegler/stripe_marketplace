@@ -7,6 +7,8 @@ gem 'stripe', '~> 4.21.2'
 gem 'devise', '~> 4.6.2'
 gem 'omniauth-stripe-connect', '~> 2.10.1'
 
+gem 'money' '~> 6.13.4'
+
 # Default Rails gems
 gem 'rails', '~> 5.2.3'
 gem 'sqlite3'
