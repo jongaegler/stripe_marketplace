@@ -6,12 +6,10 @@ class User < ApplicationRecord
 
   def self.from_stripe(auth)
     where(provider: auth['provider'], uid: auth['uid']).first_or_create do |user|
-      user.update(
-        email: auth['info']['email'],
-        name: auth['info']['name'],
-        password: Devise.friendly_token[0, 20],
-        # stripe_key: key
-      )
+      user.email = auth['info']['email']
+      user.password =  Devise.friendly_token[0, 20]
+      # user.stripe_key = key
+      # user.name = name
     end
   end
 end

@@ -1,7 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def stripe_connect
-    user = User.from_stripe(omniauth_params)
+    @user = User.from_stripe(omniauth_params)
 
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
