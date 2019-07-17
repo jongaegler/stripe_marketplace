@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
+    @product = Product.new(product_params, user: current_user)
 
     respond_to do |format|
       if @product.save
@@ -39,6 +39,10 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def purchase
+    @product.purchase
   end
 
   def destroy

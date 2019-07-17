@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:stripe_connect]
 
+  has_many :products
+
   def self.from_stripe(auth)
     where(provider: auth['provider'], uid: auth['uid']).first_or_create do |user|
       user.email = auth['info']['email']
