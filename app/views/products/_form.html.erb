@@ -1,4 +1,11 @@
-<%= form_with(model: product, local: true) do |form| %>
+<%= form_for @product do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %><br />
+  <%= form.label :description %>
+  <%= form.text_area :description %><br />
+  <%= form.label :price %>
+  $<%= form.text_field :price %><br />
+
   <% if product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
