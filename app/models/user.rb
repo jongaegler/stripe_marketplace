@@ -4,16 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:stripe_connect]
 
-  def self.from_stripe(params)
-    user = User.find_or_create_by(uid: params['uid'])
-    return user unless user.persisted?
-    user.update(
-
-      email: params['info']['email']
-    )
-  end
-
-  def failure
-    redirect_to root_path
+  def self.from_stripe(auth)
+    where(provider: auth['provider'], uid: auth['uid']).first_or_create do |user|
+      user.update(
+        email: auth['info']['email'],
+        name: auth['info']['name'],
+        password: Devise.friendly_token[0, 20],
+        # stripe_key: key
+      )
+    end
   end
 end

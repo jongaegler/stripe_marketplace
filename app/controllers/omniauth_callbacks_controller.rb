@@ -4,7 +4,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.from_stripe(omniauth_params)
 
     if @user.persisted?
-      sign_in_and_redirect @user, event: :authentication #this will throw if @user is not activated
+      sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
       set_flash_message(:notice, :success, kind: 'Stripe Connect') if is_navigational_format?
     else
       session['devise.facebook_data'] = omniauth_params
