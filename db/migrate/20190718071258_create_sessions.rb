@@ -3,7 +3,6 @@ class CreateSessions < ActiveRecord::Migration[5.2]
     create_table :sessions do |t|
       t.string :uid
       t.belongs_to :product, index: true
-      t.belongs_to :user, index: true
 
       t.timestamps
     end

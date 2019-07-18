@@ -5,5 +5,7 @@ class Product < ApplicationRecord
 
   def purchase
     StripeService.new(self).charge
+
+    update(purchased_at: Time.now)
   end
 end

@@ -3,23 +3,17 @@ class StripeService
 
   def initialize(product, user)
     @product = product
-    @user = user
   end
 
   def checkout
     url = "http://localhost:3000/products/#{product.id}/"
     stripe_session = Stripe::Checkout::Session.create(
-      success_url: url + 'purchase',
+      success_url: url + 'purchase_success',
       payment_method_types: ['card'],
-      line_items: [{
-        quantity: 1,
-        amount: product.price + 100, #temp to make stripe pass
-        name: product.title,
-        currency: 'usd',
-      }],
+      line_items: [item],
       cancel_url: url
     )
-    Session.create(uid: session['id'], product: product, user: user)
+    Session.create(uid: session['id'], product: product)
 
     stripe_session
   end
@@ -35,6 +29,17 @@ class StripeService
       },
       stripe_account: account_id,
     )
+  end
+
+  private
+
+  def item
+    {
+      quantity: 1,
+      amount: product.price + 100, #temp to make stripe pass
+      name: product.title,
+      currency: 'usd',
+    }
   end
 
 end
