@@ -12,12 +12,8 @@ class WebhooksController < ApplicationController
     end
 
     if event['type'] == 'checkout.session.completed'
-      unless session
-        head 400
-        return
-      end
+      product.purchase if session
 
-      product.purchase
       render json: { status: 200 }
     else
       render json: { status: 400 }
