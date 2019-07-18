@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product
 
   def index
     @products = Product.all
@@ -42,14 +42,15 @@ class ProductsController < ApplicationController
     end
   end
 
-  def purchase
+  def checkout
     respond_to do |format|
-      if @product.purchase
-        format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-        format.json { head :no_content }
-      else
-      end
+      @session = StripeService.new.checkout(@product)
+      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.json { head :no_content }
     end
+  end
+
+  def purchase
   end
 
   def destroy
@@ -63,7 +64,7 @@ class ProductsController < ApplicationController
   private
 
   def set_product
-    @product = Product.find(params[:id])
+    @product = Product.find(params[:id] || params[:product_id])
   end
 
   def product_params

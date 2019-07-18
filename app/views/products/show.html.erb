@@ -7,7 +7,7 @@
     <td><%= link_to 'Edit', edit_product_path(@product) %></td>
     <td><%= link_to 'Destroy', @product, method: :delete, data: { confirm: 'Are you sure?' }  %></td>
   <%else%>
-    <td><%= link_to "Purchase for $#{@product.price}", @product, method: :delete, data: { confirm: 'Are you sure?' }  %></td>
+    <td><%= link_to "Checkout", product_checkout_path(@product), method: :post %></td>
   <%end%>
   <td><%= link_to 'Back', products_path %></td>
 </table>
