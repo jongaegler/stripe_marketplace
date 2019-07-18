@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :checkout, :purchase]
 
   def index
-    @products = Product.where.not(:purchased_at)
+    @products = Product.where(purchased_at: nil)
   end
 
   def show
@@ -43,10 +43,14 @@ class ProductsController < ApplicationController
   end
 
   def checkout
-    @session = StripeService.new(@product, current_user).checkout
+    @session = StripeService.new(@product).checkout
   end
 
   def purchase_success
+    respond_to do |format|
+      format.html { head :no_content }
+      format.json { head :no_content }
+    end
   end
 
   def destroy

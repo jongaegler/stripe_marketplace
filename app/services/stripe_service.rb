@@ -1,7 +1,7 @@
 class StripeService
   attr_accessor :product, :user
 
-  def initialize(product, user)
+  def initialize(product)
     @product = product
   end
 
@@ -13,7 +13,7 @@ class StripeService
       line_items: [item],
       cancel_url: url
     )
-    Session.create(uid: session['id'], product: product)
+    Session.create(uid: stripe_session['id'], product: product)
 
     stripe_session
   end
@@ -27,7 +27,7 @@ class StripeService
         source: 'tok_visa',
         application_fee_amount: price * 0.1,
       },
-      stripe_account: account_id,
+      stripe_account: product.user.account_id,
     )
   end
 
