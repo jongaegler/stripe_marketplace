@@ -43,7 +43,6 @@ class ProductsController < ApplicationController
   end
 
   def purchase
-
     respond_to do |format|
       if @product.purchase
         format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
