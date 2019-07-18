@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
   end
 
   def checkout
-    @session = StripeService.new(@product).checkout
+    @session = StripeService.new(@product, current_user).checkout
   end
 
   def purchase

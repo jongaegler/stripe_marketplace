@@ -1,13 +1,14 @@
 class StripeService
-  attr_accessor :product
+  attr_accessor :product, :user
 
-  def initialize(product)
+  def initialize(product, user)
     @product = product
+    @user = user
   end
 
   def checkout
     url = "http://localhost:3000/products/#{product.id}/"
-    Stripe::Checkout::Session.create(
+    stripe_session = Stripe::Checkout::Session.create(
       success_url: url + 'purchase',
       payment_method_types: ['card'],
       line_items: [{
@@ -18,6 +19,9 @@ class StripeService
       }],
       cancel_url: url
     )
+    Session.create(uid: session['id'], product: product, user: user)
+
+    stripe_session
   end
 
   def charge
