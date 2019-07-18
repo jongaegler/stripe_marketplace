@@ -14,3 +14,4 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+var stripe = Stripe('pk_test_lS66UcJUG2FzdQ2KuL16o5CW00cqr8gC0d');
