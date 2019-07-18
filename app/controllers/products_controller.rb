@@ -43,11 +43,7 @@ class ProductsController < ApplicationController
   end
 
   def checkout
-    # respond_to do |format|
-      @session = StripeService.new.checkout(@product)
-      # format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-    #   format.json { head :no_content }
-    # end
+    @session = StripeService.new(@product).checkout
   end
 
   def purchase

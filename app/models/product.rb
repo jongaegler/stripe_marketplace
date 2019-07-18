@@ -3,6 +3,6 @@ class Product < ApplicationRecord
   belongs_to :user
 
   def purchase
-    StripeService.new.charge(price, user.account_id)
+    StripeService.new(self).charge
   end
 end

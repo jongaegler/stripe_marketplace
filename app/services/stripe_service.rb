@@ -1,20 +1,26 @@
 class StripeService
+  attr_accessor :product
 
-  def checkout(product)
+  def initialize(product)
+    @product = product
+  end
+
+  def checkout
+    url = "http://localhost:3000/products/#{product.id}/"
     Stripe::Checkout::Session.create(
-      success_url: 'https://example.com/success',
+      success_url: url + 'purchase',
       payment_method_types: ['card'],
       line_items: [{
         quantity: 1,
         amount: product.price + 100, #temp to make stripe pass
         name: product.title,
-        currency: "usd",
+        currency: 'usd',
       }],
-      cancel_url: 'https://example.com/cancel'
+      cancel_url: url
     )
   end
 
-  def charge(price, account_id)
+  def charge
     price = product.price
     Stripe::Charge.create(
       {
