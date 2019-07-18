@@ -27,7 +27,7 @@ class StripeService
         source: 'tok_visa',
         application_fee_amount: price * 0.1,
       },
-      stripe_account: product.user.account_id,
+      stripe_account: product.user.uid,
     )
   end
 

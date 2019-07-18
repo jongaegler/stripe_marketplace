@@ -1,4 +1,6 @@
 class WebhooksController < ApplicationController
+  EVENT_TYPE = 'checkout.session.completed'
+
   def webhooks
     payload = request.body.read
     sig_header = request.env['HTTP_STRIPE_SIGNATURE']
@@ -11,13 +13,9 @@ class WebhooksController < ApplicationController
       return
     end
 
-    if event['type'] == 'checkout.session.completed'
-      product.purchase if session
+    product.purchase if event['type'] == EVENT_TYPE && session
 
-      render json: { status: 200 }
-    else
-      render json: { status: 400 }
-    end
+    render json: { status: 200 }
   end
 
   private
