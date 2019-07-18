@@ -25,7 +25,7 @@ class StripeService
         amount: price,
         currency: 'usd',
         source: 'tok_visa',
-        application_fee_amount: price * 0.1,
+        application_fee_amount: (price * 0.1).to_i,
       },
       stripe_account: product.user.uid,
     )
