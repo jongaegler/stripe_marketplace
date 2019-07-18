@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_07_17_043555) do
     t.string "title"
     t.integer "price", default: 0, null: false
     t.string "description"
+    t.datetime "purchased_at"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -4,6 +4,8 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :title
       t.integer :price, default: 0, null: false
       t.string :description
+      t.datetime :purchased_at
+
       t.belongs_to :user, index: true
 
       t.timestamps

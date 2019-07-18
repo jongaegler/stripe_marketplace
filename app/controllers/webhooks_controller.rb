@@ -12,6 +12,7 @@ class WebhooksController < ApplicationController
     end
 
     if event['type'] == 'checkout.session.completed'
+      session = event['data']['object']
       # purchase successful
       render json: { status: 200}
     else
