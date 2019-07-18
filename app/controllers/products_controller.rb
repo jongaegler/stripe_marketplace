@@ -47,6 +47,7 @@ class ProductsController < ApplicationController
   end
 
   def purchase
+    debugger
   end
 
   def destroy
