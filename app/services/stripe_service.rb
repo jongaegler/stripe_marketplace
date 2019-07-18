@@ -1,7 +1,7 @@
 class StripeService
 
-  def charge
-    price = 1000
+  def charge(price, account_id)
+    price = product.price
     Stripe::Charge.create(
       {
         amount: price,
@@ -9,7 +9,7 @@ class StripeService
         source: 'tok_visa',
         application_fee_amount: price * 0.1,
       },
-      stripe_account: "{{CONNECTED_STRIPE_ACCOUNT_ID}}"
+      stripe_account: account_id,
     )
   end
 

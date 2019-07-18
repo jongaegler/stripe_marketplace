@@ -16,7 +16,8 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params, user: current_user)
+    @product = Product.new(product_params)
+    @product.user = current_user
 
     respond_to do |format|
       if @product.save
@@ -42,7 +43,14 @@ class ProductsController < ApplicationController
   end
 
   def purchase
-    @product.purchase
+
+    respond_to do |format|
+      if @product.purchase
+        format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+      end
+    end
   end
 
   def destroy
@@ -60,6 +68,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(%i(title price description))
+    params.require(:product).permit(%i(title price description image))
   end
 end

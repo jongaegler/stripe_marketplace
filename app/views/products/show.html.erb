@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
+<% if @product.image.attached? %>
+  <%= image_tag @product.image %>
+<% end %>
+<br>
+<%= link_to "Purchase for $#{@product.price}", edit_product_path(@product) %> |
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to('Edit', edit_product_path(@product)) if @product.user == current_user %> |
 <%= link_to 'Back', products_path %>
