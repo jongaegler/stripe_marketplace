@@ -1,10 +1,10 @@
 <%= form_for @product do |form| %>
   <%= form.label :title %>
-  <%= form.text_field :title %><br />
+  <%= form.text_field :title %><br/>
   <%= form.label :description %>
-  <%= form.text_area :description %><br />
-  <%= form.label :price %>
-  $<%= form.text_field :price %><br />
+  <%= form.text_area :description %><br/>
+  <%= form.label 'Price in cents' %>
+  <%= form.text_field :price %><br/>
   <%= form.file_field :image %>
 
   <% if product.errors.any? %>

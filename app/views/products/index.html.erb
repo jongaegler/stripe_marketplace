@@ -2,23 +2,25 @@
 
 <h1>Products</h1>
 
-<table>
-
-  <tbody>
-    <th>Image</th>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Price</th>
-    <th></th>
-    <% @products.each do |product| %>
-      <tr>
-        <%= render 'product', product: product %>
-        <td><%= link_to 'Show', product %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<% if @products.empty? %>
+  <p>No products in the store. Sign in with Stripe to add one!</p>
+<% else %>
+  <table>
+    <tbody>
+      <th>Image</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th></th>
+      <% @products.each do |product| %>
+        <tr>
+          <%= render 'product', product: product %>
+          <td><%= link_to 'Show', product %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <br>
 
 <%= link_to('New Product', new_product_path) if current_user %>

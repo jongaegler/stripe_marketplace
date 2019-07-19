@@ -11,4 +11,8 @@ class Product < ApplicationRecord
 
     update(purchased_at: Time.now)
   end
+
+  def display_price # should be in a presenter/helper
+    Money.new(price, 'USD').format
+  end
 end
