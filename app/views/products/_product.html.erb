@@ -1,0 +1,8 @@
+<% if product.image.attached? %>
+  <td><%= image_tag product.image %></td>
+<% else %>
+  <td><%= image_tag "no_photo.png" %>
+<% end %>
+<td><%= product.title %></td>
+<td><%= product.description %></td>
+<td><%= product.price %></td>
