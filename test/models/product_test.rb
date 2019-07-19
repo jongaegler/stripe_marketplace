@@ -20,4 +20,9 @@ class ProductTest < ActiveSupport::TestCase
 
     assert_not_nil(product.reload.purchased_at)
   end
+
+  test 'Cannot purchase twice' do
+    product = create(:product, purchased_at: Time.now)
+    assert_nil(product.purchase)
+  end
 end
