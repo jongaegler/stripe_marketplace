@@ -1,12 +1,14 @@
 class StripeService
   attr_accessor :product, :user
 
+  HOST = 'https://stripe-marketplace.herokuapp.com'
+
   def initialize(product)
     @product = product
   end
 
   def checkout
-    url = "http://localhost:3000/products/#{product.id}/"
+    url = "#{HOST}/products/#{product.id}/"
     stripe_session = Stripe::Checkout::Session.create(
       success_url: url + 'purchase_success',
       payment_method_types: ['card'],
