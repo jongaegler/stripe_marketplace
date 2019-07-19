@@ -18,6 +18,12 @@ class StripeService
     stripe_session
   end
 
+  # get most recent charge. Not foolproof if multiple charges simultaneously
+  def completed_checkout
+    charges = Stripe::Charge.list # I know. Creates a race condition
+    @charge = charges['data'].first || {}
+  end
+
   def charge
     price = product.price
     Stripe::Charge.create(

@@ -1,5 +1,9 @@
 Thanks for your purchase!
 <hr>
+<%= "Paid with #{@payment_info['last4']} (#{@payment_info['brand']})" %>
+<br>
+A receipt will be sent to <%= "email" %>
+<br>
 <p>
   Product:
   <%= render 'product', product: @product %>
