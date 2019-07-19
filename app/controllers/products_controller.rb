@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
 
   def purchase_success
     session = StripeService.new(@product).completed_checkout
-    return if session.empty?
+    return unless session
     @payment_info = session['payment_method_details']['card']
     @email = session['billing_details']['email']
   end
