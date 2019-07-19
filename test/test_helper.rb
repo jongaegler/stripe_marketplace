@@ -3,4 +3,7 @@ require_relative '../config/environment'
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
+  include FactoryBot::Syntax::Methods
+
+  FactoryBot.find_definitions
 end

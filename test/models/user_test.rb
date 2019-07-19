@@ -49,5 +49,9 @@ class UserTest < ActiveSupport::TestCase
       }
     }
 
+    user = User.from_stripe(stripe_response)
+    assert_equal(user.email, 'email@example.com')
+    assert_equal(user.provider, 'stripe_connect')
+    assert_not_nil(user.uid)
   end
 end
