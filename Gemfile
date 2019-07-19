@@ -11,7 +11,7 @@ gem 'money', '~> 6.13.4'
 
 # Default Rails gems
 gem 'rails', '~> 5.2.3'
-gem 'sqlite3'
+gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
