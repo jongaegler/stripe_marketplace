@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :checkout, :purchase]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :checkout, :purchase_success]
 
   def index
     @products = Product.where(purchased_at: nil)
@@ -47,10 +47,6 @@ class ProductsController < ApplicationController
   end
 
   def purchase_success
-    respond_to do |format|
-      format.html { head :no_content }
-      format.json { head :no_content }
-    end
   end
 
   def destroy

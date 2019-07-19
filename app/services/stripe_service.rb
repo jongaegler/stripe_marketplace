@@ -36,7 +36,7 @@ class StripeService
   def item
     {
       quantity: 1,
-      amount: product.price + 100, #temp to make stripe pass
+      amount: product.price,
       name: product.title,
       currency: 'usd',
     }
