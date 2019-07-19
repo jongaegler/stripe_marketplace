@@ -13,7 +13,7 @@ After successful payment is processed you will be sent to a purchase confirmatio
 
 # Future Considerations
 
-More error handling for edge cases. I didn't make a 404/500 page and errors will be thrown if you access a bad product id (i.e. `products/9999999`) will throw an error.
+More error handling for edge cases. I didn't make a 404/500 page and errors will be thrown if you access a bad product id (i.e. `products/9999999`)
 
 We should create tests using the VCR gem for mocking actual requests from the stripe service. Those are fairly time consuming to set up.
 
