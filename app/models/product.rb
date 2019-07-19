@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   validates :description, presence: true, allow_blank: false
 
   def purchase
-    return if purchased_at
+    return if purchased_at # race condition
     StripeService.new(self).charge
 
     update(purchased_at: Time.now)
