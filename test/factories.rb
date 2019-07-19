@@ -5,8 +5,8 @@ FactoryBot.define do
   end
 
   factory :product do
-    title { "Test" }
-    description  { "This is a test" }
+    title { 'Test' }
+    description { 'This is a test' }
     price { 100 }
     user
   end

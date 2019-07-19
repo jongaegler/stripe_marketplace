@@ -1,5 +1,5 @@
 class WebhooksController < ApplicationController
-  EVENT_TYPE = 'checkout.session.completed'
+  EVENT_TYPE = 'checkout.session.completed'.freeze
 
   def webhooks
     payload = request.body.read

@@ -7,6 +7,7 @@ class Product < ApplicationRecord
 
   def purchase
     return if purchased_at # race condition
+
     StripeService.new(self).charge
 
     update(purchased_at: Time.now)

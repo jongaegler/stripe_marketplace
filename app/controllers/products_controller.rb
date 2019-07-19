@@ -1,19 +1,17 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :checkout, :purchase_success]
+  before_action :set_product, only: %i[show edit update destroy checkout purchase_success]
 
   def index
     @products = Product.where(purchased_at: nil)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @product = Product.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @product = Product.new(product_params)
@@ -46,8 +44,7 @@ class ProductsController < ApplicationController
     @session = StripeService.new(@product).checkout
   end
 
-  def purchase_success
-  end
+  def purchase_success; end
 
   def destroy
     @product.destroy
@@ -64,6 +61,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(%i(title price description image))
+    params.require(:product).permit(%i[title price description image])
   end
 end
